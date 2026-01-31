@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-One Biryani Centre | Authentic Biryani in Pondicherry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --spice-red: #C41E3A;
+            --turmeric-gold: #D4AF37;
+            --saffron-orange: #FF6B35;
+            --curry-green: #2C5F2D;
+            --rice-white: #FFF8F0;
+            --charcoal: #1A1A1A;
+            --deep-brown: #3E2723;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background: var(--rice-white);
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--deep-brown) 0%, var(--charcoal) 100%);
+            padding: 1.5rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: var(--turmeric-gold);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--saffron-orange);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav ul li a:hover {
+            color: var(--saffron-orange);
+            transform: translateY(-2px);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a.active {
+            color: var(--rice-white);
+        }
+
+        /* Logo in Nav */
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--turmeric-gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Section Styling */
+        section {
+            min-height: 100vh;
+            padding: 120px 5% 60px;
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--spice-red);
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--deep-brown);
+            margin-bottom: 1.5rem;
+            border-left: 6px solid var(--saffron-orange);
+            padding-left: 20px;
+        }
+
+        /* Location Section */
+        #location {
+            background: linear-gradient(135deg, var(--rice-white) 0%, #FFE5D0 100%);
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: slideInLeft 0.8s ease;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-text h1 {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--deep-brown);
+            margin-bottom: 2rem;
+        }
+
+        .location-badge {
+            display: inline-block;
+            background: var(--turmeric-gold);
+            color: var(--charcoal);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .location-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        .shop-image-container {
+            position: relative;
+            animation: slideInRight 0.8s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .shop-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(45deg, var(--spice-red), var(--saffron-orange));
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .shop-image::before {
+            content: '🍛';
+            font-size: 8rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .map-container {
+            margin-top: 4rem;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            height: 450px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* About Us Section */
+        #about {
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFE8CC 100%);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            border-left: 8px solid var(--saffron-orange);
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--spice-red);
+            margin-bottom: 1.5rem;
+        }
+
+        .phone-number {
+            font-size: 2.5rem;
+            color: var(--turmeric-gold);
+            font-weight: 700;
+            letter-spacing: 2px;
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--deep-brown);
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            height: 280px;
+            background: linear-gradient(135deg, var(--curry-green), var(--deep-brown));
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .gallery-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        /* Menu Section */
+        #menu {
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--deep-brown) 100%);
+            color: var(--rice-white);
+        }
+
+        #menu h1 {
+            color: var(--turmeric-gold);
+        }
+
+        .menu-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid var(--turmeric-gold);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--saffron-orange) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .menu-item:hover::before {
+            opacity: 0.1;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            border-color: var(--saffron-orange);
+        }
+
+        .menu-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .menu-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--turmeric-gold);
+            margin-bottom: 1rem;
+        }
+
+        .menu-item .price {
+            font-size: 2.5rem;
+            color: var(--saffron-orange);
+            font-weight: 700;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        .menu-item .unit {
+            font-size: 1rem;
+            color: var(--rice-white);
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-logo {
+                font-size: 1.5rem;
+            }
+
+            nav ul li a {
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+
+            .shop-image {
+                height: 350px;
+            }
+
+            .phone-number {
+                font-size: 1.8rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 100px 5% 40px;
+            }
+        }
+
+        /* Decorative Elements */
+        .spice-decoration {
+            position: fixed;
+            font-size: 3rem;
+            opacity: 0.1;
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spice-1 {
+            top: 10%;
+            left: 5%;
+        }
+
+        .spice-2 {
+            top: 70%;
+            right: 10%;
+            animation-duration: 15s;
+        }
+
+        .spice-3 {
+            bottom: 15%;
+            left: 15%;
+            animation-duration: 25s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Elements -->
+    <div class="spice-decoration spice-1">🌶️</div>
+    <div class="spice-decoration spice-2">🧄</div>
+    <div class="spice-decoration spice-3">🍃</div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#location" class="nav-link active" data-section="location">🏠 Location</a></li>
+            <li class="nav-logo">A-ONE BIRYANI</li>
+            <li><a href="#about" class="nav-link" data-section="about">👥 About Us</a></li>
+            <li><a href="#menu" class="nav-link" data-section="menu">🍽️ Menu</a></li>
+        </ul>
+    </nav>
+
+    <!-- Location Section -->
+    <section id="location" class="active">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Welcome to<br>A-One Biryani Centre</h1>
+                <p>Experience the authentic taste of traditional biryani, crafted with passion and served with love. Every grain tells a story of rich spices and culinary excellence.</p>
+                <a href="https://maps.app.goo.gl/X5oSUGTyBkGp9bw96?g_st=aw" target="_blank" class="location-badge">
+                    📍 Find Us on Google Maps
+                </a>
+            </div>
+            <div class="shop-image-container">
+                <div class="shop-image">
+                    <!-- Decorative biryani illustration -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.9876543210123!2d80.1234567890123!3d13.0876543210123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA1JzE1LjYiTiA4MMKwMDcnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <h1>About A-One Biryani Centre</h1>
+        
+        <div class="about-content">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--deep-brown);">
+                    Call us for takeaway orders and parcel service. We prepare fresh, delicious biryani ready for you to take home!
+                </p>
+                <div class="phone-number">📞 9486415337</div>
+                <p style="margin-top: 1.5rem; font-size: 1.1rem; color: var(--deep-brown);">
+                    <strong>Location:</strong> Puducherry<br>
+                    <strong>Specialty:</strong> Authentic Biryani & Grilled Delicacies
+                </p>
+            </div>
+
+            <h2>Our Ambiance</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    🏪
+                    <span class="gallery-label">Our Shop Front</span>
+                </div>
+                <div class="gallery-item">
+                    🍳
+                    <span class="gallery-label">Kitchen Excellence</span>
+                </div>
+                <div class="gallery-item">
+                    📦
+                    <span class="gallery-label">Parcel Service</span>
+                </div>
+                <div class="gallery-item">
+                    👨‍🍳
+                    <span class="gallery-label">Master Chefs</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--spice-red); margin-bottom: 1.5rem;">Our Story</h3>
+                <p style="font-size: 1.2rem; line-height: 1.9; color: var(--deep-brown);">
+                    At A-One Biryani Centre, we believe in preserving the traditional art of biryani-making while serving it with modern hospitality. Each dish is prepared fresh to order with carefully selected spices, premium ingredients, and decades of culinary expertise. We specialize in parcel service, ensuring you can enjoy authentic, restaurant-quality biryani in the comfort of your home. Our commitment to quality and authentic flavors has made us a beloved destination for food lovers across Puducherry.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h1>Our Signature Menu</h1>
+        
+        <div class="menu-grid">
+            <div class="menu-item">
+                <span class="menu-icon">🍗</span>
+                <h3>Chicken Biryani</h3>
+                <p style="opacity: 0.8; margin-top: 0.5rem;">Tender chicken pieces marinated in aromatic spices, layered with fragrant basmati rice</p>
+                <span class="price">₹110</span>
+            </div>
+
+            <div class="menu-item">
+                <span class="menu-icon">🥩</span>
+                <h3>Mutton Biryani</h3>
+                <p style="opacity: 0.8; margin-top: 0.5rem;">Succulent mutton slow-cooked to perfection with premium spices and saffron-infused rice</p>
+                <span class="price">₹220</span>
+            </div>
+
+            <div class="menu-item">
+                <span class="menu-icon">🌶️</span>
+                <h3>Chicken 65 Biryani</h3>
+                <p style="opacity: 0.8; margin-top: 0.5rem;">Spicy Chicken 65 combined with flavorful biryani for a fiery fusion experience</p>
+                <span class="price">₹130</span>
+            </div>
+
+            <div class="menu-item">
+                <span class="menu-icon">🍲</span>
+                <h3>Kaadai</h3>
+                <p style="opacity: 0.8; margin-top: 0.5rem;">Rich, spicy curry prepared in traditional kadai with bell peppers and aromatic spices</p>
+                <span class="price">₹90 <span class="unit">per Kaadai</span></span>
+            </div>
+
+            <div class="menu-item">
+                <span class="menu-icon">🔥</span>
+                <h3>Chicken 65</h3>
+                <p style="opacity: 0.8; margin-top: 0.5rem;">Crispy, spicy fried chicken bites - a South Indian classic appetizer</p>
+                <span class="price">₹70 <span class="unit">per 100 grams</span></span>
+            </div>
+
+            <div class="menu-item" style="background: linear-gradient(135deg, var(--spice-red), var(--saffron-orange)); border-color: var(--rice-white);">
+                <span class="menu-icon">⭐</span>
+                <h3 style="color: white;">Special Note</h3>
+                <p style="opacity: 0.95; margin-top: 0.5rem; font-size: 1.1rem;">
+                    All dishes are prepared fresh to order. Call ahead for bulk orders and special occasions!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                navLinks.forEach(l => l.classList.remove('active'));
+                sections.forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked link
+                link.classList.add('active');
+                
+                // Show corresponding section
+                const sectionId = link.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Add animation on scroll for menu items
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'all 0.6s ease';
+            observer.observe(item);
+        });
+
+        // Gallery item animations
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
